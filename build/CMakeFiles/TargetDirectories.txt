@@ -1,0 +1,4 @@
+C:/Users/mao/Desktop/bjxn/529/0708/test/test01/build/CMakeFiles/server.dir
+C:/Users/mao/Desktop/bjxn/529/0708/test/test01/build/CMakeFiles/client.dir
+C:/Users/mao/Desktop/bjxn/529/0708/test/test01/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/mao/Desktop/bjxn/529/0708/test/test01/build/CMakeFiles/ZERO_CHECK.dir

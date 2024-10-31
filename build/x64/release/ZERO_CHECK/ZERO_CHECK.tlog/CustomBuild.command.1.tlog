@@ -1,0 +1,10 @@
+^C:\USERS\MAO\DESKTOP\BJXN\529\0708\TEST\TEST01\BUILD\CMAKEFILES\1A92A83914F61C41808A33F4C30876A5\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/mao/Desktop/bjxn/529/0708/test/test01 -BC:/Users/mao/Desktop/bjxn/529/0708/test/test01/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/mao/Desktop/bjxn/529/0708/test/test01/build/sonar_F.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
