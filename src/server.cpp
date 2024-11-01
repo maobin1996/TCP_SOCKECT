@@ -4,7 +4,7 @@
 #include <vector>
 #pragma comment(lib, "ws2_32.lib") // 链接 Winsock 库
 
-#define PORT 8080
+#define PORT 1101
 
 namespace msg_fsonar
 {
@@ -76,24 +76,33 @@ int main()
 
     while (true)
     {
+        std::cout << "111" << std::endl;
         // 接收 vector 的大小
-        size_t net_size;
-        recv(client_socket, (char*)&net_size, sizeof(net_size), 0);
-        size_t size = ntohl(net_size); // 转换为主机字节序
-
-        std::vector<msg_fsonar::Obj> vec(size);
-
-        // 接收 vector 的内容
-        recv(client_socket, reinterpret_cast<char*>(vec.data()), size * sizeof(msg_fsonar::Obj), 0);
-
-        // 处理接收到的数据
-        for (const auto& obj : vec)
+        int net_size;
+        int byte =recv(client_socket, (char*)&net_size, sizeof(net_size), 0);
+        std::cout<<"byte = "<<byte<<std::endl;
+        if (byte>0)
         {
-            // 处理每个 obj
-            // 例如：打印数据
-            printf("msg: %.4s, center_x: %f, center_y: %f, distance_x: %f, distance_y: %f\n",
-                obj.msg, obj.center_x, obj.center_y, obj.distance_x, obj.distance_y);
+            int size = ntohl(net_size); // 转换为主机字节序
+            std::vector<msg_fsonar::Obj> vec(size);
+            // 接收 vector 的内容
+            recv(client_socket, reinterpret_cast<char*>(vec.data()), size * sizeof(msg_fsonar::Obj), 0);
+            // 处理接收到的数据
+            for (const auto& obj : vec)
+            {
+                // 处理每个 obj
+                // 例如：打印数据
+                printf("msg: %.4s, center_x: %f, center_y: %f, distance_x: %f, distance_y: %f\n",
+                    obj.msg, obj.center_x, obj.center_y, obj.distance_x, obj.distance_y);
+            }
         }
+        
+
+
+
+
+
+
         // char buffer[sizeof(msg_fsonar::Obj)] = {0};
         // // 读取数据
         // int byte=recv(client_socket, buffer, sizeof(msg_fsonar::Obj), 0);

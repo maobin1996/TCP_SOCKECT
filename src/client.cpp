@@ -6,7 +6,7 @@
 
 
 
-#define PORT 8080
+#define PORT 1101
 
 client::client(std::string IP,int port)
 {
@@ -30,8 +30,8 @@ client::client(std::string IP,int port)
     }
 
     server_addr.sin_family = AF_INET;
-    server_addr.sin_port = htons(port);
-    inet_pton(AF_INET, IP.c_str(), &server_addr.sin_addr); // 将 IP 地址转换为二进制形式
+    server_addr.sin_port = htons(PORT);
+    inet_pton(AF_INET, "127.0.0.1", &server_addr.sin_addr); // 将 IP 地址转换为二进制形式
 
     // 连接到服务端
     if (connect(sock, (struct sockaddr*)&server_addr, sizeof(server_addr)) == SOCKET_ERROR) {
@@ -44,8 +44,8 @@ client::client(std::string IP,int port)
 
 void client::sendmessage(std::vector<msg_fsonar::Obj>& vec)
 {
-    size_t  size = vec.size();
-    size_t net_size = htonl(size);
+    int  size = vec.size();
+    int net_size = htonl(size);
     // 发送vector的大小
     send(sock, (char*)&net_size, sizeof(net_size), 0);
     // 发送vector的内容

@@ -14,7 +14,7 @@ int main()
     m_obj.center_y = 5.2;
     m_obj.distance_x = 8.1;
     m_obj.distance_y = 8.2;
-    client m_client("127.0.0.1",8080);
+    client m_client("127.0.0.1",1101);
     std::vector<msg_fsonar::Obj> v1;
     v1.push_back(m_obj);
     while (true)
